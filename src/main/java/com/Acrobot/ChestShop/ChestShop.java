@@ -1,7 +1,6 @@
 package com.Acrobot.ChestShop;
 
 import com.Acrobot.Breeze.Configuration.Configuration;
-import com.Acrobot.ChestShop.Commands.Give;
 import com.Acrobot.ChestShop.Commands.ItemInfo;
 import com.Acrobot.ChestShop.Commands.Version;
 import com.Acrobot.ChestShop.Configuration.Messages;
@@ -15,7 +14,6 @@ import com.Acrobot.ChestShop.Listeners.Block.Break.SignBreak;
 import com.Acrobot.ChestShop.Listeners.Block.SignCreate;
 import com.Acrobot.ChestShop.Listeners.Economy.ServerAccountCorrector;
 import com.Acrobot.ChestShop.Listeners.Economy.TaxModule;
-import com.Acrobot.ChestShop.Listeners.Item.ItemMoveListener;
 import com.Acrobot.ChestShop.Listeners.ItemInfoListener;
 import com.Acrobot.ChestShop.Listeners.Modules.DiscountModule;
 import com.Acrobot.ChestShop.Listeners.Modules.PriceRestrictionModule;
@@ -38,7 +36,6 @@ import com.Acrobot.ChestShop.Utils.uName;
 import com.avaje.ebean.EbeanServer;
 import com.lennardf1989.bukkitex.Database;
 import com.nijikokun.register.payment.forChestShop.Methods;
-import net.gravitydevelopment.updater.Updater;
 import org.bukkit.Bukkit;
 import org.bukkit.Server;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -47,7 +44,6 @@ import org.bukkit.event.Event;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.mcstats.Metrics;
 
 import java.io.File;
 import java.io.IOException;
@@ -119,10 +115,7 @@ public class ChestShop extends JavaPlugin {
 
         getCommand("iteminfo").setExecutor(new ItemInfo());
         getCommand("csVersion").setExecutor(new Version());
-        getCommand("csGive").setExecutor(new Give());
 
-        startStatistics();
-        startUpdater();
     }
 
     public static File loadFile(String string) {
@@ -195,9 +188,6 @@ public class ChestShop extends JavaPlugin {
         registerEvent(new RestrictedSign());
         registerEvent(new ShortNameSaver());
 
-        if (!Properties.TURN_OFF_HOPPER_PROTECTION) {
-            registerEvent(new ItemMoveListener());
-        }
     }
 
     private void registerShopRemovalEvents() {
@@ -270,34 +260,6 @@ public class ChestShop extends JavaPlugin {
 
     private void scheduleTask(Runnable runnable, long startTime, long repetitionTime) {
         server.getScheduler().runTaskTimerAsynchronously(this, runnable, startTime, repetitionTime);
-    }
-
-    private void startStatistics() {
-        try {
-            new Metrics(this).start();
-        } catch (IOException ex) {
-            ChestShop.getBukkitLogger().severe("There was an error while submitting statistics.");
-        }
-    }
-
-    private static final int PROJECT_BUKKITDEV_ID = 31263;
-
-    private void startUpdater() {
-        if (Properties.TURN_OFF_UPDATES) {
-            return;
-        }
-
-        Updater updater = new Updater(this, PROJECT_BUKKITDEV_ID, this.getFile(), Updater.UpdateType.NO_DOWNLOAD, true);
-
-        if (updater.getResult() == Updater.UpdateResult.UPDATE_AVAILABLE) {
-            if (Bukkit.getBukkitVersion().contains("1.7.2") || Bukkit.getBukkitVersion().contains("1.7.5") || Bukkit.getBukkitVersion().contains("1.6.4")) {
-                for (int i = 0; i < 3; ++i) {
-                    logger.warning("There is a new version of ChestShop available, however it is only compatible with Minecraft 1.7.8 and higher!");
-                }
-            } else {
-                new Updater(this, PROJECT_BUKKITDEV_ID, this.getFile(), Updater.UpdateType.NO_VERSION_CHECK, true);
-            }
-        }
     }
 
     /////////////////////   DATABASE    STUFF      ////////////////////////////////

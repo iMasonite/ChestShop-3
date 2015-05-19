@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.acrobot.chestshop</groupId>
-    <artifactId>chestshop</artifactId>
-    <version>3.7.9</version>
+    <artifactId>ChestShop</artifactId>
+    <version>3.7.9-iMasonite</version>
     <description>Chest-and-sign shop plugin for Bukkit</description>
 
     <scm>
@@ -53,12 +53,8 @@
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>bukkit</artifactId>
-            <version>1.6.4-R2.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.mcstats.bukkit</groupId>
-            <artifactId>metrics</artifactId>
-            <version>R7</version>
+            <version>1.4.7-R1.0</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>net.milkbowl.vault</groupId>
@@ -71,59 +67,19 @@
             <version>6.0.10b</version>
         </dependency>
         <dependency>
-            <groupId>com.iConomy</groupId>
-            <artifactId>iConomy5</artifactId>
-            <version>5.0</version>
-        </dependency>
-        <dependency>
-            <groupId>cosine.boseconomy</groupId>
-            <artifactId>boseconomy</artifactId>
-            <version>0.7.0</version>
-        </dependency>
-        <dependency>
             <groupId>info.somethingodd</groupId>
             <artifactId>odditem</artifactId>
             <version>0.9.5</version>
         </dependency>
         <dependency>
-            <groupId>com.herocraftonline.heroes</groupId>
-            <artifactId>heroes</artifactId>
-            <version>1.5.2-dev-b1705</version>
-        </dependency>
-        <dependency>
-            <groupId>com.griefcraft.lwc</groupId>
-            <artifactId>lwc</artifactId>
-            <version>4.3.1</version>
-        </dependency>
-        <dependency>
-            <groupId>com.daemitus.deadbolt</groupId>
-            <artifactId>deadbolt</artifactId>
-            <version>2.2</version>
+            <groupId>com.sk89q</groupId>
+            <artifactId>worldguard</artifactId>
+            <version>5.8-iMasonite</version>
         </dependency>
         <dependency>
             <groupId>com.sk89q</groupId>
-            <artifactId>worldguard</artifactId>
-            <version>LATEST</version>
-        </dependency>
-        <dependency>
-            <groupId>com.webkonsept.bukkit.simplechestlock</groupId>
-            <artifactId>simplechestlock</artifactId>
-            <version>1.2.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.yi.acru.bukkit.lockette</groupId>
-            <artifactId>lockette</artifactId>
-            <version>1.7.9</version>
-        </dependency>
-        <dependency>
-            <groupId>com.bekvon.bukkit.residence</groupId>
-            <artifactId>residence</artifactId>
-            <version>2.6.6.3</version>
-        </dependency>
-        <dependency>
-            <groupId>net.gravitydevelopment.updater</groupId>
-            <artifactId>updater</artifactId>
-            <version>2.1</version>
+            <artifactId>worldedit</artifactId>
+            <version>5.6-iMasonite</version>
         </dependency>
     </dependencies>
 
@@ -150,24 +106,48 @@
                         <configuration>
                             <artifactSet>
                                 <includes>
-                                    <include>org.mcstats.bukkit</include>
-                                    <include>net.gravitydevelopment.updater</include>
+                                    <include>com.acrobot.chestshop</include>
                                 </includes>
                             </artifactSet>
-                            <relocations>
-                                <relocation>
-                                    <pattern>org.mcstats</pattern>
-                                    <shadedPattern>com.Acrobot.ChestShop</shadedPattern>
-                                </relocation>
-                                <relocation>
-                                    <pattern>net.gravitydevelopment.updater</pattern>
-                                    <shadedPattern>com.Acrobot.ChestShop</shadedPattern>
-                                </relocation>
-                            </relocations>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
+            
+
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.3</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+
+			<!-- Copy resulting file to local server, change to your own path -->
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<configuration>
+					<tasks>
+						<copy file="./target/${project.build.finalName}.jar" tofile="../DEBUGSERVER/TekkitLite/plugins/${project.build.finalName}.jar" />
+						<copy file="./target/${project.build.finalName}.jar" tofile="../DEBUGSERVER/Vanilla147/plugins/${project.build.finalName}.jar" />
+						<copy file="./target/${project.build.finalName}.jar" tofile="K:/GAME/SERVERS/Plugins-Master/${project.build.finalName}.jar" />
+					</tasks>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<target failonerror="false"></target>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+            
         </plugins>
 
         <resources>

@@ -1,7 +1,5 @@
 package com.nijikokun.register.payment.forChestShop;
 
-import com.nijikokun.register.payment.forChestShop.methods.BOSE7;
-import com.nijikokun.register.payment.forChestShop.methods.iCo5;
 import com.nijikokun.register.payment.forChestShop.methods.iCo6;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
@@ -15,9 +13,7 @@ import java.util.Map;
  */
 public class Methods {
     private static final Map<Method, String> PLUGINS_TO_LOAD = new HashMap<Method, String>() {{
-        put(new iCo5(), "iConomy");
         put(new iCo6(), "iConomy");
-        put(new BOSE7(), "BOSEconomy");
     }};
     private static String preferredPlugin;
 

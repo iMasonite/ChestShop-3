@@ -2,6 +2,7 @@ package com.Acrobot.ChestShop.Listeners.PreShopCreation;
 
 import com.Acrobot.ChestShop.Configuration.Messages;
 import com.Acrobot.ChestShop.Events.PreShopCreationEvent;
+
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -11,7 +12,8 @@ import org.bukkit.event.Listener;
  */
 public class ErrorMessageSender implements Listener {
 
-    @EventHandler(priority = EventPriority.MONITOR)
+    @SuppressWarnings("incomplete-switch")
+		@EventHandler(priority = EventPriority.MONITOR)
     public static void onPreShopCreation(PreShopCreationEvent event) {
         if (!event.isCancelled()) {
             return;

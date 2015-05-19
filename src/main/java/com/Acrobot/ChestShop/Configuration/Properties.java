@@ -10,9 +10,6 @@ public class Properties {
     @ConfigurationComment("(When not using Vault) Preferred economy plugin to use (iConomy/BOSEconomy/Essentials).")
     public static String PREFERRED_ECONOMY_PLUGIN = "";
 
-    @ConfigurationComment("Do you want to turn off the automatic updates of ChestShop?")
-    public static boolean TURN_OFF_UPDATES = false;
-
     @PrecededBySpace
     @ConfigurationComment("(In 1/1000th of a second) How often can a player use the shop sign?")
     public static int SHOP_INTERACTION_INTERVAL = 250;
@@ -112,22 +109,13 @@ public class Properties {
     public static boolean USE_BUILT_IN_PROTECTION = true;
 
     @ConfigurationComment("Do you want to have shop signs \"stick\" to chests?")
-    public static boolean STICK_SIGNS_TO_CHESTS = false;
+    public static boolean STICK_SIGNS_TO_CHESTS = true;
 
     @ConfigurationComment("EXPERIMENTAL: Do you want to turn off the default protection when another plugin is protecting the block? (Will leave the chest visually open - CraftBukkit bug!)")
     public static boolean TURN_OFF_DEFAULT_PROTECTION_WHEN_PROTECTED_EXTERNALLY = false;
 
     @ConfigurationComment("Do you want to turn off the default sign protection? Warning! Other players will be able to destroy other people's shops!")
     public static boolean TURN_OFF_SIGN_PROTECTION = false;
-
-    @ConfigurationComment("Do you want to disable the hopper protection, which prevents the hoppers from taking items out of chests?")
-    public static boolean TURN_OFF_HOPPER_PROTECTION = false;
-
-    @ConfigurationComment("Do you want to protect shop chests with LWC?")
-    public static boolean PROTECT_CHEST_WITH_LWC = false;
-
-    @ConfigurationComment("Do you want to protect shop signs with LWC?")
-    public static boolean PROTECT_SIGN_WITH_LWC = false;
 
     @PrecededBySpace
     @ConfigurationComment("If true, plugin will generate shop statistics webpage.")
@@ -149,7 +137,4 @@ public class Properties {
     @ConfigurationComment("Do you want ChestShop to respect WorldGuard's chest protection?")
     public static boolean WORLDGUARD_USE_PROTECTION = false;
 
-    @PrecededBySpace
-    @ConfigurationComment("How much Heroes exp should people get for creating a ChestShop?")
-    public static double HEROES_EXP = 100;
 }

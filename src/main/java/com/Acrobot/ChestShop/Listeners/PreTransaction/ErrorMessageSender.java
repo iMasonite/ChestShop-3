@@ -5,6 +5,7 @@ import com.Acrobot.Breeze.Utils.MaterialUtil;
 import com.Acrobot.ChestShop.Configuration.Messages;
 import com.Acrobot.ChestShop.Configuration.Properties;
 import com.Acrobot.ChestShop.Events.PreTransactionEvent;
+
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -19,7 +20,8 @@ import static com.Acrobot.ChestShop.Configuration.Messages.NOT_ENOUGH_STOCK_IN_Y
  * @author Acrobot
  */
 public class ErrorMessageSender implements Listener {
-    @EventHandler(priority = EventPriority.MONITOR)
+    @SuppressWarnings("incomplete-switch")
+		@EventHandler(priority = EventPriority.MONITOR)
     public static void onMessage(PreTransactionEvent event) {
         if (!event.isCancelled()) {
             return;

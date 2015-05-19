@@ -24,7 +24,7 @@ public class TransactionLogger implements Listener {
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onTransaction(final TransactionEvent event) {
         ChestShop.getBukkitServer().getScheduler().runTaskAsynchronously(ChestShop.getPlugin(), new Runnable() {
-            @Override public void run() {
+            public void run() {
                 String template = (event.getTransactionType() == BUY ? BUY_MESSAGE : SELL_MESSAGE);
 
                 StringBuilder items = new StringBuilder(50);

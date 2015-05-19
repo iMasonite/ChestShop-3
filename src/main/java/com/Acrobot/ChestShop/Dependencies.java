@@ -59,24 +59,6 @@ public class Dependencies {
         Listener listener = null;
 
         switch (dependency) {
-            //Protection plugins
-            case LWC:
-                listener = new LightweightChestProtection();
-                break;
-            case Lockette:
-                listener = new Lockette();
-                break;
-            case Deadbolt:
-                listener = new Deadbolt();
-                break;
-            case SimpleChestLock:
-                listener = SimpleChestLock.getSimpleChestLock(plugin);
-                break;
-            case Residence:
-                listener = new ResidenceChestProtection();
-                break;
-
-            //Terrain protection plugins
             case WorldGuard:
                 WorldGuardPlugin worldGuard = (WorldGuardPlugin) plugin;
                 boolean inUse = Properties.WORLDGUARD_USE_PROTECTION || Properties.WORLDGUARD_INTEGRATION;
@@ -96,15 +78,6 @@ public class Dependencies {
                 break;
 
             //Other plugins
-            case Heroes:
-                Heroes heroes = Heroes.getHeroes(plugin);
-
-                if (heroes == null) {
-                    return;
-                }
-
-                listener = heroes;
-                break;
             case OddItem:
                 MaterialUtil.Odd.initialize();
                 break;
@@ -119,16 +92,7 @@ public class Dependencies {
     }
 
     private static enum Dependency {
-        LWC,
-        Lockette,
-        Deadbolt,
-        SimpleChestLock,
-        Residence,
-
         OddItem,
-
-        WorldGuard,
-
-        Heroes
+        WorldGuard
     }
 }
