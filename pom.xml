@@ -9,39 +9,6 @@
     <version>3.7.9-iMasonite</version>
     <description>Chest-and-sign shop plugin for Bukkit</description>
 
-    <scm>
-        <connection>scm:git:git://github.com/Acrobot/ChestShop-3</connection>
-        <developerConnection>scm:git:ssh://git@github.com/Acrobot/ChestShop-3.git</developerConnection>
-        <url>https://github.com/Acrobot/ChestShop-3</url>
-    </scm>
-
-    <repositories>
-        <repository>
-            <id>bukkit-repo</id>
-            <url>http://repo.bukkit.org/content/repositories/releases/</url>
-        </repository>
-        <repository>
-            <id>sk89q-repo</id>
-            <url>http://maven.sk89q.com/repo/</url>
-        </repository>
-        <repository>
-            <id>mcstats-releases</id>
-            <url>http://repo.mcstats.org/content/repositories/releases/</url>
-        </repository>
-        <repository>
-            <id>vault-repo</id>
-            <url>http://ci.herocraftonline.com/plugin/repository/everything</url>
-        </repository>
-        <repository>
-            <id>gravity-repo</id>
-            <url>http://repo.gravitydevelopment.net</url>
-        </repository>
-        <repository>
-            <id>local_repo</id>
-            <url>file://${project.basedir}/repo/</url>
-        </repository>
-    </repositories>
-
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -85,6 +52,7 @@
 
     <build>
         <plugins>
+        
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -93,6 +61,7 @@
                     <finalName>ChestShop</finalName>
                 </configuration>
             </plugin>
+            
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
