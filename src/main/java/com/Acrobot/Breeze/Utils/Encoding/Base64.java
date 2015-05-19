@@ -105,7 +105,7 @@ public class Base64 {
 	/** Translates a Base64 value to either its 6-bit reconstruction value or a negative number
 	 * indicating some other meaning. */
 	private final static byte[] _STANDARD_DECODABET = { -9, -9, -9, -9, -9, -9, -9, -9, -9,                 // Decimal
-																																													// 0 - 8
+	// 0 - 8
 	-5, -5,                                      // Whitespace: Tab and Linefeed
 	-9, -9,                                      // Decimal 11 - 12
 	-5,                                         // Whitespace: Carriage Return
@@ -147,7 +147,7 @@ public class Base64 {
 	
 	/** Used in decoding URL- and Filename-safe dialects of Base64. */
 	private final static byte[] _URL_SAFE_DECODABET = { -9, -9, -9, -9, -9, -9, -9, -9, -9,                 // Decimal
-																																													// 0 - 8
+	// 0 - 8
 	-5, -5,                                      // Whitespace: Tab and Linefeed
 	-9, -9,                                      // Decimal 11 - 12
 	-5,                                         // Whitespace: Carriage Return
@@ -192,7 +192,7 @@ public class Base64 {
 	
 	/** Used in decoding the "ordered" dialect of Base64. */
 	private final static byte[] _ORDERED_DECODABET = { -9, -9, -9, -9, -9, -9, -9, -9, -9,                 // Decimal
-																																													// 0 - 8
+	// 0 - 8
 	-5, -5,                                      // Whitespace: Tab and Linefeed
 	-9, -9,                                      // Decimal 11 - 12
 	-5,                                         // Whitespace: Carriage Return
