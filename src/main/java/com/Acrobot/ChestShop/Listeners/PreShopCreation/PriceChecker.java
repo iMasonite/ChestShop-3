@@ -1,73 +1,71 @@
-package com.Acrobot.ChestShop.Listeners.PreShopCreation;
 
-import com.Acrobot.Breeze.Utils.PriceUtil;
-import com.Acrobot.ChestShop.Events.PreShopCreationEvent;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.Listener;
+package com.Acrobot.ChestShop.Listeners.PreShopCreation;
 
 import static com.Acrobot.Breeze.Utils.PriceUtil.isPrice;
 import static com.Acrobot.ChestShop.Events.PreShopCreationEvent.CreationOutcome.INVALID_PRICE;
 import static com.Acrobot.ChestShop.Signs.ChestShopSign.PRICE_LINE;
 
-/**
- * @author Acrobot
- */
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
+
+import com.Acrobot.Breeze.Utils.PriceUtil;
+import com.Acrobot.ChestShop.Events.PreShopCreationEvent;
+
+/** @author Acrobot */
 public class PriceChecker implements Listener {
-
-    @EventHandler(priority = EventPriority.LOWEST)
-    public static void onPreShopCreation(PreShopCreationEvent event) {
-        String line = event.getSignLine(PRICE_LINE).toUpperCase();
-        String[] part = line.split(":");
-
-        if (part.length > 1 && (isInvalid(part[0]) ^ isInvalid(part[1]))) {
-            line = line.replace(':', ' ');
-            part = new String[]{line};
-        }
-
-        if (part[0].split(" ").length > 2) {
-            event.setOutcome(INVALID_PRICE);
-            return;
-        }
-
-        if (line.indexOf('B') != line.lastIndexOf('B') || line.indexOf('S') != line.lastIndexOf('S')) {
-            event.setOutcome(INVALID_PRICE);
-            return;
-        }
-
-        if (isPrice(part[0])) {
-            line = "B " + line;
-        }
-
-        if (part.length > 1 && isPrice(part[1])) {
-            line += " S";
-        }
-
-        if (line.length() > 15) {
-            line = line.replace(" ", "");
-        }
-
-        if (line.length() > 15) {
-            event.setOutcome(INVALID_PRICE);
-            return;
-        }
-
-        event.setSignLine(PRICE_LINE, line);
-
-        if (!PriceUtil.hasBuyPrice(line) && !PriceUtil.hasSellPrice(line)) {
-            event.setOutcome(INVALID_PRICE);
-        }
-    }
-
-    private static boolean isInvalid(String part) {
-        char characters[] = {'B', 'S'};
-
-        for (char character : characters) {
-            if (part.contains(Character.toString(character))) {
-                return !PriceUtil.hasPrice(part, character);
-            }
-        }
-
-        return false;
-    }
+	
+	@EventHandler(priority = EventPriority.LOWEST)
+	public static void onPreShopCreation(PreShopCreationEvent event) {
+		String line = event.getSignLine(PRICE_LINE).toUpperCase();
+		String[] part = line.split(":");
+		
+		if (part.length > 1 && (isInvalid(part[0]) ^ isInvalid(part[1]))) {
+			line = line.replace(':', ' ');
+			part = new String[] { line };
+		}
+		
+		if (part[0].split(" ").length > 2) {
+			event.setOutcome(INVALID_PRICE);
+			return;
+		}
+		
+		if (line.indexOf('B') != line.lastIndexOf('B') || line.indexOf('S') != line.lastIndexOf('S')) {
+			event.setOutcome(INVALID_PRICE);
+			return;
+		}
+		
+		if (isPrice(part[0])) {
+			line = "B " + line;
+		}
+		
+		if (part.length > 1 && isPrice(part[1])) {
+			line += " S";
+		}
+		
+		if (line.length() > 15) {
+			line = line.replace(" ", "");
+		}
+		
+		if (line.length() > 15) {
+			event.setOutcome(INVALID_PRICE);
+			return;
+		}
+		
+		event.setSignLine(PRICE_LINE, line);
+		
+		if (!PriceUtil.hasBuyPrice(line) && !PriceUtil.hasSellPrice(line)) {
+			event.setOutcome(INVALID_PRICE);
+		}
+	}
+	
+	private static boolean isInvalid(String part) {
+		char characters[] = { 'B', 'S' };
+		
+		for (char character : characters) {
+			if (part.contains(Character.toString(character))) return !PriceUtil.hasPrice(part, character);
+		}
+		
+		return false;
+	}
 }
